@@ -10,7 +10,7 @@
     // inserting data into database
     include("connection.php");
     $name = $_POST["name"];
-    $description =  $_POST["desc"];
+    $description =  $_POST["description"];
     // $image = basename($_FILES["img"]["name"]);
 
     $query = $mysqli->prepare("INSERT INTO restaurants(name, description) VALUES (?, ?)");
