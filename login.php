@@ -1,28 +1,43 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+
 include("connection.php");
+	$status ="Message Sent!";
 
-$email = $_POST["login_email"];
-$password = hash("sha256", $_POST["login_pass"]);
+    if (isset ($_POST["login_email"])){
+	    $email = $_POST["login_email"];
 
-$query = $mysqli->prepare("Select id from users where email = ? AND password = ?");
-$query->bind_param("ss", $email, $password);
-$query->execute();
-$query->store_result();
+    }else{
+	    $status = "Error";
+    }
 
-$num_rows = $query->num_rows;
+    if (isset ($_POST["login_pass"])){
+        $password = hash("sha256", $_POST["login_pass"]);
+    }else{
+	    $status = "Error";
+    }
 
-$query->bind_result($id);
-$query->fetch();
 
-$response = [];
-if($num_rows == 0){
-    $response["response"] = "User Not Found";
-}else{
-    $response["response"] = "Logged in";
-    $response["id"] = $id;
-}
+    $query = $mysqli->prepare("Select id,usertypes_id from users where email = ? AND password = ?");
+    $query->bind_param("ss", $email, $password);
+    $query->execute();
+    $query->store_result();
 
-echo json_encode($response);
+    $num_rows = $query->num_rows;
+
+    $query->bind_result($id,$usertypes_id);
+    $query->fetch();
+
+
+    $response = [];
+    $response["status"] = $status;
+    if($num_rows == 0){
+        $response["response"] = "User Not Found";
+    }else{
+        $response["response"] = "Logged in";
+        $response["id"] = $id;
+        $response["type"]=$usertypes_id;
+    }
+
+    echo json_encode($response);
 
 ?>

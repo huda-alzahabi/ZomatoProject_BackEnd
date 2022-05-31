@@ -1,31 +1,28 @@
+<?php
 
-
-    <?php
-
-    header('Access-Control-Allow-Origin: *');
-
-
-    // when you press on submit button
-
-    // inserting data into database
     include("connection.php");
-    $name = $_POST["name"];
-    $description =  $_POST["description"];
-    $image =  $_POST["image"];
-    // $image = basename($_FILES["img"]["name"]);
+  
+	$status ="Message Sent!";
 
+    if (isset ($_POST["name"])){
+	    $name = $_POST["name"];
+
+    }else{
+	   $status = "Error";
+    }
+
+    if (isset ($_POST["description"])){
+	    $description = $_POST["description"];
+
+    }else{
+	   $status = "Error";
+    }
     $query = $mysqli->prepare("INSERT INTO restaurants(name, description, image) VALUES (?, ?, ?)");
     $query->bind_param("sss", $name, $description, $image);
     $query->execute();
     $response = [];
-    $response["success"] = true;
+    $response["status"] = $status;
 
     echo json_encode($response);
-
-    echo "<script>alert('Restaurant Added');</script>";
-
-
-    ?>
-
 
 

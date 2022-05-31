@@ -1,19 +1,34 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 include("connection.php");
 
-$full_name = $_POST["full_name"];
-$email = $_POST["signup_email"];
-$password = hash("sha256", $_POST["signup_pass"]);
-$usertypes_id = 0;
+	$status ="Message Sent!";
 
-$query = $mysqli->prepare("INSERT INTO users(full_name, email, password, usertypes_id) VALUES (?, ?, ?, ?)");
-$query->bind_param("sssi", $full_name, $email, $password, $usertypes_id);
-$query->execute();
+    if (isset ($_POST["full_name"])){
+		$full_name = $_POST["full_name"];
+    }else{
+	    $status = "Error";
+    }
+	if (isset ($_POST["signup_email"])){
+        $email =$_POST["signup_email"];
+    }else{
+	    $status = "Error";
+    }
 
-$response = [];
-$response["success"] = true;
+    if (isset ($_POST["signup_pass"])){
+        $password = hash("sha256", $_POST["signup_pass"]);
+    }else{
+	    $status = "Error";
+    }
 
-echo json_encode($response);
+	$usertypes_id = 0;
+
+	$query = $mysqli->prepare("INSERT INTO users(full_name, email, password, usertypes_id) VALUES (?, ?, ?, ?)");
+	$query->bind_param("sssi", $full_name, $email, $password, $usertypes_id);
+	$query->execute();
+
+	$response = [];
+	$response["status"] = $status;
+
+	echo json_encode($response);
 
 ?>
