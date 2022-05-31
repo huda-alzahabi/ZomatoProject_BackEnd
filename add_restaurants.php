@@ -1,7 +1,7 @@
 <?php
 
     include("connection.php");
-  
+
 	$status ="Message Sent!";
 
     if (isset ($_POST["name"])){
@@ -25,5 +25,4 @@
     $response["status"] = $status;
 
     echo json_encode($response);
-
-
+?>
