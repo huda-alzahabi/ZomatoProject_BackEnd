@@ -1,6 +1,8 @@
 <?php
 include("connection.php");
-	$status ="Message Sent!"
+include("login.php");
+
+	$status ="Message Sent!";
 
 	if (isset ($_POST["rate"])){
 		$rate = $_POST["rate"];
@@ -15,10 +17,8 @@ include("connection.php");
 	}else{
 		$status = "Error";
 	}
-
+	$user_id=$id;
 	$resto_id=1;
-	$cust_id= localStorage.getItem("user_id");
-;
 	$rating_status=0;
 
 	// $query1 = $mysqli->prepare("Select id from restaurants where email = ? AND password = ?");
@@ -30,7 +30,7 @@ include("connection.php");
 
 	// $query1->bind_result($resto_id);
 	$query = $mysqli->prepare("INSERT INTO ratings(stars, reviews, restaurant_id, customer_id,rating_status) VALUES (?, ?, ?, ?,?)");
-	$query->bind_param("isiii", $rate, $comment, $resto_id, $cust_id,$rating_status);
+	$query->bind_param("isiii", $rate, $comment, $resto_id, $user_id,$rating_status);
 	$query->execute();
 
 	$response = [];
