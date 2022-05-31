@@ -1,6 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-include("connection.php");
 
 $rate = $_POST["rate"];
 $comment = $_POST["comment"];

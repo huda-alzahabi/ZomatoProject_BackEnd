@@ -1,5 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 include("connection.php");
 $query = $mysqli->prepare("SELECT r.name, r.description, r.image from restaurants as r");
 $query->execute();

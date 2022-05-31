@@ -1,10 +1,6 @@
 
 
     <?php
-
-    header('Access-Control-Allow-Origin: *');
-
-
     // when you press on submit button
 
     // inserting data into database

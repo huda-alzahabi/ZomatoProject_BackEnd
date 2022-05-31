@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: *');
+
 include("connection.php");
 
 $email = $_POST["login_email"];
