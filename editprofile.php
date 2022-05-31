@@ -13,7 +13,7 @@
 	if (isset ($_POST["login_email"])){
         $email =$_POST["login_email"];
     }
-	$query = $mysqli->prepare("INSERT INTO users(full_name, email) VALUES (?, ?)");
+	$query = $mysqli->prepare("UPDATE users SET full_name=?, email=?");
 	$query->bind_param("ss", $full_name, $email);
 
 	$response = [];
