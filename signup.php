@@ -2,16 +2,21 @@
 include("connection.php");
 
 
-    if (isset $_POST["full_name"]){
+    if (isset ($_POST["full_name"])){
 		$full_name = $_POST["full_name"];
     }else{
-	    die("You didn't submit all the required fields!")
+	    die("You didn't submit all the required fields!");
+    }
+	if (isset ($_POST["signup_email"])){
+        $email =$_POST["signup_email"];
+    }else{
+	    die("You didn't submit all the required fields!");
     }
 
-    if (isset $_POST["signup_pass"]){
+    if (isset ($_POST["signup_pass"])){
         $password = hash("sha256", $_POST["signup_pass"]);
     }else{
-	    die("You didn't submit all the required fields!")
+	    die("You didn't submit all the required fields!");
     }
 
 	$usertypes_id = 0;

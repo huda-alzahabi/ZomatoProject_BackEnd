@@ -1,14 +1,14 @@
 <?php
 include("connection.php");
 
-	if (isset $_POST["rate"]){
+	if (isset ($_POST["rate"])){
 		$rate = $_POST["rate"];
 
 	}else{
 		die("You didn't submit all the required fields!")
 	}
 
-	if (isset $_POST["comment"]){
+	if (isset ($_POST["comment"])){
 		$comment = $_POST["comment"];
 
 	}else{
