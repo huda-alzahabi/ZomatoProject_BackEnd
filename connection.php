@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost:3306";
+$host = "localhost";
 $db_user = "root";
 $db_pass = null;
 $db_name = "zomatodb";
