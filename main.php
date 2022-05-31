@@ -2,19 +2,27 @@
 <?php
 include("connection.php");
 $status ="Message Sent!";
-
     if (isset ($_POST["restaurant_id"])){
 		 $restaurant_id = $_POST["restaurant_id"];
-
     }else{
 	   $status = "Error";
     }
-	$query = $mysqli->prepare("SELECT r.name, r.description from restaurants as r where r.id=?");
+	$query = $mysqli->prepare("SELECT name,description from restaurants where id=?");
 	$query->bind_param("i", $restaurant_id);
     $query->execute();
-	$array = $query ->get_result();
-	$response = [];
-    $response["status"] = $status;
+	$query->store_result();
+	$num_rows = $query->num_rows;
+    $query->bind_result($name,$description);
+    $query->fetch();
+    $response = [];
+    if($num_rows == 0){
+        $response["response"] = "Restaurant Not Found";
+    }else{
+        $response["response"] = "Logged in";
+        $response["name"] = $name;
+        $response["description"]=$description;
+    }
 
+	echo json_encode($response);
 
 ?>
