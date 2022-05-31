@@ -1,22 +1,23 @@
 <?php
 include("connection.php");
 
+	$status ="Message Sent!"
 
     if (isset ($_POST["full_name"])){
 		$full_name = $_POST["full_name"];
     }else{
-	    die("You didn't submit all the required fields!");
+	    $status = "Error";
     }
 	if (isset ($_POST["signup_email"])){
         $email =$_POST["signup_email"];
     }else{
-	    die("You didn't submit all the required fields!");
+	    $status = "Error";
     }
 
     if (isset ($_POST["signup_pass"])){
         $password = hash("sha256", $_POST["signup_pass"]);
     }else{
-	    die("You didn't submit all the required fields!");
+	    $status = "Error";
     }
 
 	$usertypes_id = 0;
@@ -26,7 +27,8 @@ include("connection.php");
 	$query->execute();
 
 	$response = [];
-	$response["success"] = true;
+	$status ="Message Sent!"
+	$response["status"] = $status;
 
 	echo json_encode($response);
 

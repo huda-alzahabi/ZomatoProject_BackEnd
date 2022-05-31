@@ -1,18 +1,19 @@
 <?php
 
 include("connection.php");
+	$status ="Message Sent!"
 
     if (isset ($_POST["login_email"])){
 	    $email = $_POST["login_email"];
 
     }else{
-	    die("You didn't submit all the required fields!");
+	    $status = "Error";
     }
 
     if (isset ($_POST["login_pass"])){
         $password = hash("sha256", $_POST["login_pass"]);
     }else{
-	    die("You didn't submit all the required fields!");
+	    $status = "Error";
     }
 
 
@@ -28,6 +29,7 @@ include("connection.php");
 
 
     $response = [];
+    $response["status"] = $status;
     if($num_rows == 0){
         $response["response"] = "User Not Found";
     }else{
