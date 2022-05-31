@@ -2,8 +2,8 @@
 <?php
 include("connection.php");
 $status ="Message Sent!";
-    if (isset ($_POST["restaurant_id"])){
-		 $restaurant_id = $_POST["restaurant_id"];
+    if (isset ($_GET["restaurant_id"])){
+		 $restaurant_id = $_GET["restaurant_id"];
     }else{
 	   $status = "Error";
     }
