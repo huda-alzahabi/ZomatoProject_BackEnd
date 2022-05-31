@@ -1,6 +1,7 @@
 <?php
 
 include("connection.php");
+
 	$status ="Message Sent!";
 
     if (isset ($_POST["login_email"])){
@@ -37,7 +38,7 @@ include("connection.php");
         $response["id"] = $id;
         $response["type"]=$usertypes_id;
     }
-
+    $_SESSION['varname'] = $id;
     echo json_encode($response);
 
 ?>

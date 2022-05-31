@@ -2,10 +2,12 @@
 	include("connection.php");
 	include("login.php");
 	$status ="Message Sent!";
+	$id = $_SESSION['varname'];
 
-	$query = $mysqli->prepare("Select  full_name, email from users where id=$id");
-	$query->bind_param("ss", $fullname, $email);
+	$query = $mysqli->prepare("Select  full_name, email from users where id=?");
+	$query->bind_param("i", $id);
 	$query->execute();
+	echo $_SESSION['varname'];
 
 	if (isset ($_POST["fullname"])){
 		$fullname = $_POST["fullname"];
