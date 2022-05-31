@@ -27,7 +27,6 @@ include("connection.php");
 	$query->execute();
 
 	$response = [];
-	$status ="Message Sent!"
 	$response["status"] = $status;
 
 	echo json_encode($response);
