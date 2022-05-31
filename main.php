@@ -1,22 +1,20 @@
 
 <?php
 include("connection.php");
+$status ="Message Sent!";
 
-$name = $_POST["name"];
-$description = $_POST["description"];
-$path = './assets/crepaway.png';
-$type = pathinfo($path, PATHINFO_EXTENSION);
-$data = file_get_contents($path);
-$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    if (isset ($_POST["restaurant_id"])){
+		 $restaurant_id = $_POST["restaurant_id"];
 
-$cuisines_id = 0;
+    }else{
+	   $status = "Error";
+    }
+	$query = $mysqli->prepare("SELECT r.name, r.description from restaurants as r where r.id=?");
+	$query->bind_param("i", $restaurant_id);
+    $query->execute();
+	$array = $query ->get_result();
+	$response = [];
+    $response["status"] = $status;
 
-$query = $mysqli->prepare("INSERT INTO restaurants (name, description,image,cuisines_id) VALUES (?, ?, ?, ?)");
-$query->bind_param("sssi", $name, $description, $base64, $cuisines_id);
-$query->execute();
 
-$response = [];
-$response["success"] = true;
-echo $base64;
-echo json_encode($response);
-	?>
+?>
