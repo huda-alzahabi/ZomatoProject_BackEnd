@@ -1,7 +1,7 @@
 <?php
 
     include("connection.php");
-	$status ="Message Sent!"
+	$status ="Message Sent!";
 
     if (isset $_POST["name"]){
 	    $name = $_POST["name"];

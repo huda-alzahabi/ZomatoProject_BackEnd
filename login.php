@@ -1,7 +1,8 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
 include("connection.php");
-	$status ="Message Sent!"
+	$status ="Message Sent!";
 
     if (isset ($_POST["login_email"])){
 	    $email = $_POST["login_email"];
