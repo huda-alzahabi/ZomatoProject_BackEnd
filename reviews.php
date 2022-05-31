@@ -1,6 +1,6 @@
 <?php
 include("connection.php");
-include("login.php");
+//include("login.php");
 
 	$status ="Message Sent!";
 
@@ -17,7 +17,7 @@ include("login.php");
 	}else{
 		$status = "Error";
 	}
-	$user_id=$id;
+	$user_id=3;
 	$resto_id=1;
 	$rating_status=0;
 
