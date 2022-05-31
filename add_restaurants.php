@@ -17,6 +17,7 @@
     }else{
 	   $status = "Error";
     }
+    
     $query = $mysqli->prepare("INSERT INTO restaurants(name, description, image) VALUES (?, ?, ?)");
     $query->bind_param("sss", $name, $description, $image);
     $query->execute();
